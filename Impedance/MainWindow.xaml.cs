@@ -47,7 +47,7 @@ namespace Impedance
             }
         }
 
-        private void CalculateParametrs(string expressionImpedance)
+        private void CalculateParametrs(string expressionImpedanceBefore)
         {
             var x = new List<double>();
             var y = new List<double>();
@@ -70,8 +70,8 @@ namespace Impedance
             var paramR = 0;
             var paramC = 0;
             var minSum = double.MaxValue;
-            var isR = expressionImpedance.Contains("R");
-            var isC = expressionImpedance.Contains("C");
+            var isR = expressionImpedanceBefore.Contains("R");
+            var isC = expressionImpedanceBefore.Contains("C");
             var answer = "";
 
             while (!isEnding)
@@ -101,7 +101,7 @@ namespace Impedance
                 var w = 1;
                 double sum = 0;
                 var wMax = 101;
-                expressionImpedance =expressionImpedance.Replace("R", r.ToString());
+                var expressionImpedance =expressionImpedanceBefore.Replace("R", r.ToString());
                 expressionImpedance=expressionImpedance.Replace("C", c.ToString());
                 var expressionImpedanceSplit = expressionImpedance.Split('i');
                 char[] charDelete = { '-', '+'};
@@ -110,10 +110,10 @@ namespace Impedance
 
                 while (w <= wMax)
                 {
-                    expressionImpedanceRe = expressionImpedanceRe.Replace("w", w.ToString());
-                    var valueImpX = mathParser.Parse(expressionImpedanceRe, isRadians);
-                    expressionImpedanceIm = expressionImpedanceIm.Replace("w", w.ToString());
-                    var valueImpY = mathParser.Parse(expressionImpedanceIm, isRadians);
+                    var expressionImpedanceReW = expressionImpedanceRe.Replace("w", w.ToString());
+                    var valueImpX = mathParser.Parse(expressionImpedanceReW, isRadians);
+                    var expressionImpedanceImW = expressionImpedanceIm.Replace("w", w.ToString());
+                    var valueImpY = mathParser.Parse(expressionImpedanceImW, isRadians);
                     var valueHod = approximationFunc.ValueInX(valueImpX);
                     var dif = Math.Pow((valueHod - valueImpY), 2);
                     sum += dif;
