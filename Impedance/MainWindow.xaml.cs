@@ -103,13 +103,19 @@ namespace Impedance
                 var wMax = 101;
                 expressionImpedance =expressionImpedance.Replace("R", r.ToString());
                 expressionImpedance=expressionImpedance.Replace("C", c.ToString());
+                var expressionImpedanceSplit = expressionImpedance.Split('i');
+                char[] charDelete = { '-', '+'};
+                var expressionImpedanceRe = expressionImpedanceSplit[0].TrimEnd(charDelete);
+                var expressionImpedanceIm = expressionImpedanceSplit[1];
 
                 while (w <= wMax)
                 {
-                    expressionImpedance = expressionImpedance.Replace("w", w.ToString());
-                    var valueImp = mathParser.Parse(expressionImpedance, isRadians);
-                    var valueHod = approximationFunc.ValueInX(w);
-                    var dif = Math.Pow((valueHod - valueImp), 2);
+                    expressionImpedanceRe = expressionImpedanceRe.Replace("w", w.ToString());
+                    var valueImpX = mathParser.Parse(expressionImpedanceRe, isRadians);
+                    expressionImpedanceIm = expressionImpedanceIm.Replace("w", w.ToString());
+                    var valueImpY = mathParser.Parse(expressionImpedanceIm, isRadians);
+                    var valueHod = approximationFunc.ValueInX(valueImpX);
+                    var dif = Math.Pow((valueHod - valueImpY), 2);
                     sum += dif;
                     w += 10;
                 }
