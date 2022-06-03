@@ -1,0 +1,78 @@
+﻿<Window x:Class="Impedance.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Impedance"
+        mc:Ignorable="d"
+        Title="Импеданс" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Введите координату Z': "/>
+                <TextBox Grid.Row="1" Grid.Column="0" x:Name="zFirst">
+                    <TextBox.Text>
+                        <Binding Path="ZFirst" >
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Введите координату Z'': "/>
+                <TextBox Grid.Row="3" Grid.Column="0" x:Name="zSecond" >
+                    <TextBox.Text>
+                        <Binding Path="ZSecond">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Button Grid.Row="4" Grid.Column="0" x:Name="addPoint" Content="Добавить точку" Click="AddPointClick"></Button>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Введите выражение импеданса: "/>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="expression" ></TextBox>
+                <ListBox x:Name="pointList" Grid.Row="2" Grid.Column="1" Grid.RowSpan="3" FontFamily="Times New Roman"/>
+            </Grid>
+            <TextBox x:Name="ans" ></TextBox>
+            <Button x:Name="submit" Content="Получить оптимальные параметры" Click="SubmitClick"></Button>
+            <TextBlock x:Name="result"></TextBlock>
+            <Canvas x:Name="coord">
+                <Line X1="400" Y1="0" X2="400" Y2="200" Stroke="Black" />
+                <Line X1="0" Y1="100" X2="800" Y2="100" Stroke="Black" />
+                <Line X1="395" Y1="10" X2="400" Y2="0" Stroke="Black" />
+                <Line X1="405" Y1="10" X2="400" Y2="0" Stroke="Black" />
+                <Line X1="790" Y1="95" X2="800" Y2="100" Stroke="Black" />
+                <Line X1="790" Y1="105" X2="800" Y2="100" Stroke="Black" />
+                <TextBlock Text="Z''" Canvas.Left="385"/>
+                <TextBlock Text="Z'" Canvas.Left="785" Canvas.Top="103"/>
+                <Path Stroke="Red" x:Name="firstHodograph" Data="" >
+                </Path>
+                <Path Stroke="Green" >
+                    <Path.Data >
+                        <PathGeometry x:Name="secondHodograph">
+                            <PathFigure StartPoint="400,100" IsClosed="False" IsFilled="True">
+                                <QuadraticBezierSegment Point1="500,200" Point2="450,100" IsStroked="True"/>
+                            </PathFigure>
+                            <PathFigure StartPoint="400,200" IsClosed="False" IsFilled="True">
+                                <QuadraticBezierSegment Point1="400,0" Point2="500,150"  IsStroked="True"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                </Path>
+            </Canvas>
+        </StackPanel>
+    </Grid>
+</Window>
+
