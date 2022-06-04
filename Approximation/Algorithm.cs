@@ -8,9 +8,6 @@ namespace Approximation
     {
         public Function Calculate(List<double> list1, List<double> list2)
         {
-            //var list1 = new List<double> { 1, 2, 3, 4, 5 };
-            //var list2 = new List<double> { 5, 10, 15, 20, 25 };
-
             var approxim = new Function(list1, list2);
             double minDeviation = double.MaxValue;
 

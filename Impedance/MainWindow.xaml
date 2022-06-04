@@ -48,7 +48,7 @@
             <TextBox x:Name="ans" ></TextBox>
             <Button x:Name="submit" Content="Получить оптимальные параметры" Click="SubmitClick"></Button>
             <TextBlock x:Name="result"></TextBlock>
-            <Canvas x:Name="coord">
+            <!--<Canvas x:Name="coord">
                 <Line X1="400" Y1="0" X2="400" Y2="200" Stroke="Black" />
                 <Line X1="0" Y1="100" X2="800" Y2="100" Stroke="Black" />
                 <Line X1="395" Y1="10" X2="400" Y2="0" Stroke="Black" />
@@ -57,21 +57,8 @@
                 <Line X1="790" Y1="105" X2="800" Y2="100" Stroke="Black" />
                 <TextBlock Text="Z''" Canvas.Left="385"/>
                 <TextBlock Text="Z'" Canvas.Left="785" Canvas.Top="103"/>
-                <Path Stroke="Red" x:Name="firstHodograph" Data="" >
-                </Path>
-                <Path Stroke="Green" >
-                    <Path.Data >
-                        <PathGeometry x:Name="secondHodograph">
-                            <PathFigure StartPoint="400,100" IsClosed="False" IsFilled="True">
-                                <QuadraticBezierSegment Point1="500,200" Point2="450,100" IsStroked="True"/>
-                            </PathFigure>
-                            <PathFigure StartPoint="400,200" IsClosed="False" IsFilled="True">
-                                <QuadraticBezierSegment Point1="400,0" Point2="500,150"  IsStroked="True"/>
-                            </PathFigure>
-                        </PathGeometry>
-                    </Path.Data>
-                </Path>
-            </Canvas>
+                
+            </Canvas>-->
         </StackPanel>
     </Grid>
 </Window>
